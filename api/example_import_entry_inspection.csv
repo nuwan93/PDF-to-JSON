@@ -1,0 +1,4 @@
+Room index,Room title,Room alt title,Room comment,Room clean,Room undamaged,Room working,Item index,Item title,Item type,Item comment,Item clean,Item undamaged,Item working
+1,First room,First room alt. title,First room comment,,,,1,First item,FIXTURE,First item comment,YES,YES,YES
+1,First room,First room alt. title,First room comment,,,,2,Second item,FIXTURE,Second item comment,NO,NO,NO
+2,Second room,Second room alt. title,Second room comment,,,,1,Third item,FURNITURE,Third item comment,NA,NA,NA

@@ -1,0 +1,51 @@
+{
+	"importMode": "CREATE_ONLY",
+	"type": "ENTRY",
+	"inspectedAt": 1609459200000,
+	"rooms": [
+		{
+			"title": "First room",
+			"altTitle": "First room alt. title",
+			"comment": "First room comment",
+			"items": [
+				{
+					"title": "First item",
+					"type": "FIXTURE", 
+					"comment": "First item comment",
+					"condition": {
+						"isClean": "YES",
+						"isUndamaged": "YES",
+						"isWorking": "YES"
+					}
+				},
+				{
+					"title": "Second item",
+					"type": "FIXTURE", 
+					"comment": "Second item comment",
+					"condition": {
+						"isClean": "NO",
+						"isUndamaged": "NO",
+						"isWorking": "NO"
+					}
+				}
+			]
+		},
+		{
+			"title": "Third room",
+			"altTitle": "Third room alt. title",
+			"comment": "Third room comment",
+			"items": [
+				{
+					"title": "Third item",
+					"type": "FURNITURE", 
+					"comment": "Third item comment",
+					"condition": {
+						"isClean": "NA",
+						"isUndamaged": "NA",
+						"isWorking": "NA"
+					}
+				}
+			]
+		}
+	]
+}
