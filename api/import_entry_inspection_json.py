@@ -5,11 +5,14 @@
 import json
 
 import requests
+import sys
+sys.path.insert(0, r'E:\files\work\project\assetowl\pdf_to_json\report_conversion')
+import db
 
 # base_url = 'https://app.pip.local'
-base_url = 'https://app.dev.internal.assetowl.com'
+#base_url = 'https://app.dev.internal.assetowl.com'
 # base_url = 'https://app.test.internal.assetowl.com'
-# base_url = 'https://app.prod.internal.assetowl.com'
+base_url = 'https://app.prod.assetowl.com'
 
 session = requests.Session()
 # session.verify = False  # when using local environment without valid SSL certificate
@@ -26,19 +29,24 @@ def login(username, password):
     return login_response.json()
 
 
-access_token = login('_TODO_USERNAME_', '_TODO_PASSWORD_')['accessToken']
+access_token = login('un', "pass")['accessToken']
 
 session.headers = {
     'Authorization': f'Bearer {access_token}'
 }
 
+org_id = 'c8f53258-7d9c-4f92-af49-28d36bfb541b'
 
-with open('example_import_entry_inspection.json', 'r') as file:
-    template_json = file.read()
 
-org_id = '_TODO_ORG_ID_'
-property_id = '_TODO_PROPERTY_ID_'
+documents = db.fetch_all_unimported_documents(org_id)
 
-session.post(f'{base_url}/api/import/orgs/{org_id}/properties/{property_id}/inspections', data=template_json, headers={'Content-Type': 'application/json'}).raise_for_status()
+for data in documents:
+    with open(f"{data['path']}\{data['json_file_name']}", 'r') as file:
+        template_json = file.read()
+    
+    property_id = data['property_id']
 
-print('Import successful')
+    response = session.post(f'{base_url}/api/import/orgs/{org_id}/properties/{property_id}/inspections', data=template_json, headers={'Content-Type': 'application/json'})
+    print(response.content)
+    db.mark_as_imported(property_id)
+    print(f"Imported {data['address']} successfully")

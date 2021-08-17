@@ -3,7 +3,8 @@ import glob
 import sys
 from datetime import datetime
 import time
-sys.path.insert(0, r'C:\Users\Nuwan\Downloads\pdf_to_json-20210617T052048Z-001\pdf_to_json\report_conversion')
+import math
+sys.path.insert(0, r'E:\files\work\project\assetowl\pdf_to_json\report_conversion')
 from db import insert_report
 
 class Report:
@@ -16,7 +17,7 @@ class Report:
         self.data = {
             'importMode': 'CREATE_ONLY',
 	        'type': type,
-            'inspectedAt': None
+            'inspectedAt': int(time.time())
         }
         self.type = type
         self.data['rooms'] = []
@@ -26,7 +27,7 @@ class Report:
     def set_date(self,inspection_date, format):
         d = datetime.strptime(inspection_date, format).date()
         unix_time = time.mktime(d.timetuple())
-        self.data['inspectedAt'] = unix_time
+        self.data['inspectedAt'] = math.trunc(unix_time)
 
     @classmethod    
     def load_excel_files(self, path, org_id):
@@ -60,8 +61,14 @@ class Report:
     #creating a new room
     def create_room(self, main_title, alt_title, comment):
          self.room['title'] = main_title
-         self.room['altTitle'] = alt_title
-         self.room['comment'] = comment
+         
+         if comment != None:
+            self.room['altTitle'] = alt_title
+         
+         if comment != None:
+            self.room['comment'] = comment
+         
+         
     
    
     #cretin a JSON file and writing 

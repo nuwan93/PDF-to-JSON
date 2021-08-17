@@ -1,6 +1,6 @@
 from re import split
 import sys
-sys.path.insert(0, r'C:\Users\Nuwan\Downloads\pdf_to_json-20210617T052048Z-001\pdf_to_json\report_conversion')
+sys.path.insert(0, r'E:\files\work\project\assetowl\pdf_to_json\report_conversion')
 import Entry 
 import openpyxl
 from openpyxl.cell import cell
@@ -12,7 +12,6 @@ directory = r"E:\Google Drive - AssetOwl\Test PCR data - rentfindinspector"
 for root, subdirectories, files in os.walk(directory):
     for file in files:
         if file.endswith(".xlsx"):
-            print(root)
             Entry.Entry.load_excel_files(root, 'c8f53258-7d9c-4f92-af49-28d36bfb541b')
 
             #start and end of the report
@@ -72,5 +71,6 @@ for root, subdirectories, files in os.walk(directory):
                 filename = os.path.split(file)[1] # Name of the file
                 wo_ext = os.path.splitext(filename)[0] # Name without .xlsx
                 entry.create_json(str(wo_ext))
-                entry.insert_to_db(str(wo_ext) + f' {entry.property_adress}')
+                print(f'converted ${str(wo_ext)} to JSON')
+                entry.insert_to_db(str(wo_ext) + '.json')
                 wb.close()

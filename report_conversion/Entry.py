@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, r'C:\Users\Nuwan\Downloads\pdf_to_json-20210617T052048Z-001\pdf_to_json\report_conversion')
+sys.path.insert(0, r'E:\files\work\project\assetowl\pdf_to_json\report_conversion')
 from Report import Report
 
 class Entry(Report):
@@ -33,9 +33,10 @@ class Entry(Report):
             'isUndamaged': self.check_conditions(undamaged.value),
             'isWorking': self.check_conditions(working.value),
         }
+        
         self.items.append({
             'title' : title.value,
             "type": "FIXTURE",
-            'comment': str(comment.value),
+            'comment': str(comment.value) if comment.value != None else "",
             'condition': condition           
             })
