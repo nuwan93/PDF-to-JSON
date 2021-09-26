@@ -1,13 +1,13 @@
 from re import split
 import sys
-sys.path.insert(0, r'E:\files\work\project\assetowl\pdf_to_json\report_conversion')
+sys.path.insert(0, r'C:\Users\nuwan\Documents\Projects\AssetOwl\PDF-to-JSON\report_conversion')
 import Entry 
 import openpyxl
 from openpyxl.cell import cell
 import os
 
 
-directory = r"E:\Google Drive - AssetOwl\Test PCR data - rentfindinspector"
+directory = r"G:\My Drive\Test PCR data - rentfindinspector"
 
 for root, subdirectories, files in os.walk(directory):
     for file in files:
@@ -17,7 +17,6 @@ for root, subdirectories, files in os.walk(directory):
             #start and end of the report
             sor = 'PLEASE NOTE Any amendments to this report must be listed in writing and a signed copy returned to the Managing Agents within SEVEN (7) days of receiving same. Failure to do this will result in the bond inspection being carried out against this original report.'
             eor = 'Approximate dates when work was last done on Residential Premises:'
-
 
             for file in Entry.Entry.files:
                 wb = openpyxl.load_workbook(rf'{file}')
