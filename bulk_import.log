@@ -1,0 +1,17 @@
+2021-10-18 12:28:03,423: DEBUG:Starting new HTTPS connection (1): app.prod.assetowl.com:443
+2021-10-18 12:28:04,655: DEBUG:https://app.prod.assetowl.com:443 "POST /api/auth/login HTTP/1.1" 200 837
+2021-10-18 12:28:04,656: INFO:*-*-*-*-*-*-*-*-*-*-*-* Started 32 Acerosa Boulevard, Halls Head, 6210 (Residential) import *-*-*-*-*-*-*-*-*-*-*-*
+2021-10-18 12:28:10,296: DEBUG:https://app.prod.assetowl.com:443 "POST /api/import/orgs/c8f53258-7d9c-4f92-af49-28d36bfb541b/properties/144e71ae-081b-4876-b591-8dba2cd4d423/inspections HTTP/1.1" 200 45
+2021-10-18 12:28:10,296: INFO:Imported 32 Acerosa Boulevard, Halls Head, 6210 (Residential) successfully
+2021-10-18 12:28:10,296: INFO:*-*-*-*-*-*-*-*-*-*-*-* Started 57 Leisure Way, Halls Head, 6210 (Residential) import *-*-*-*-*-*-*-*-*-*-*-*
+2021-10-18 12:28:13,893: DEBUG:https://app.prod.assetowl.com:443 "POST /api/import/orgs/c8f53258-7d9c-4f92-af49-28d36bfb541b/properties/17d42e8f-776a-4e55-9c87-04ec09911334/inspections HTTP/1.1" 200 45
+2021-10-18 12:28:13,893: INFO:Imported 57 Leisure Way, Halls Head, 6210 (Residential) successfully
+2021-10-18 12:28:13,893: INFO:*-*-*-*-*-*-*-*-*-*-*-* Started 14 Manya Close, GREENFIELDS, 6210 (Residential) import *-*-*-*-*-*-*-*-*-*-*-*
+2021-10-18 12:28:18,501: DEBUG:https://app.prod.assetowl.com:443 "POST /api/import/orgs/c8f53258-7d9c-4f92-af49-28d36bfb541b/properties/1015cc7d-062e-432b-b445-12bfa3cbaeb6/inspections HTTP/1.1" 200 45
+2021-10-18 12:28:18,501: INFO:Imported 14 Manya Close, GREENFIELDS, 6210 (Residential) successfully
+2021-10-18 12:28:18,501: INFO:*-*-*-*-*-*-*-*-*-*-*-* Started 20 Nankeen Approach, Dudley Park, 6210 (Residential) import *-*-*-*-*-*-*-*-*-*-*-*
+2021-10-18 12:28:24,100: DEBUG:https://app.prod.assetowl.com:443 "POST /api/import/orgs/c8f53258-7d9c-4f92-af49-28d36bfb541b/properties/1fcba919-152f-42d6-8beb-545ff20fb1fd/inspections HTTP/1.1" 200 45
+2021-10-18 12:28:24,100: INFO:Imported 20 Nankeen Approach, Dudley Park, 6210 (Residential) successfully
+2021-10-18 12:28:24,100: INFO:*-*-*-*-*-*-*-*-*-*-*-* Started 15 Scrivener Place, Halls Head, 6210 (Residential) import *-*-*-*-*-*-*-*-*-*-*-*
+2021-10-18 12:28:27,939: DEBUG:https://app.prod.assetowl.com:443 "POST /api/import/orgs/c8f53258-7d9c-4f92-af49-28d36bfb541b/properties/80a05b0b-331b-404b-aba8-12e03228bc36/inspections HTTP/1.1" 200 45
+2021-10-18 12:28:27,939: INFO:Imported 15 Scrivener Place, Halls Head, 6210 (Residential) successfully

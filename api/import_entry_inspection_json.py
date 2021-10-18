@@ -5,11 +5,16 @@
 import json
 
 import requests
-import sys
 import logging
+import os
+import openpyxl
+from openpyxl.cell import cell
 
-sys.path.insert(0, r'C:\Users\nuwan\Documents\Projects\AssetOwl\PDF-to-JSON\report_conversion')
-import db
+parent_dir = r'C:\Users\nuwan\Documents\test org'
+
+wrkbk = openpyxl.load_workbook(r"C:\Users\nuwan\Downloads\test.xlsx")
+
+sh = wrkbk.active
 
 logging.basicConfig(filename='bulk_import.log' ,level=logging.DEBUG, format='%(asctime)s: %(levelname)s:%(message)s')
 
@@ -33,7 +38,7 @@ def login(username, password):
     return login_response.json()
 
 
-access_token = login('un', "pass")['accessToken']
+access_token = login('nuwan+support@assetowl.com', "!tYcE/'6jFUj@Dk@")['accessToken']
 
 session.headers = {
     'Authorization': f'Bearer {access_token}'
@@ -42,27 +47,33 @@ session.headers = {
 org_id = 'c8f53258-7d9c-4f92-af49-28d36bfb541b'
 
 
-documents = db.fetch_all_unimported_documents(org_id)
+#documents = db.fetch_all_unimported_documents(org_id)
 
-for data in documents:
-    logging.info(f"*-*-*-*-*-*-*-*-*-*-*-* Started {data['address']} import *-*-*-*-*-*-*-*-*-*-*-*")
-    try:
-        with open(fr"{data['path']}\{data['json_file_name']}", 'r') as file:
-            template_json = file.read()
-    except Exception as e:
-        logging.error(e)
-        continue
+for i in range(2, sh.max_row+1):
     
-    property_id = data['property_id']
+    address = sh.cell(row=i, column=4).value.replace("/","_")
+    property_id = sh.cell(row=i, column=6).value
+    path_to_json = rf'{parent_dir}\{address}\completed json'
 
-    try:
-        session.post(f'{base_url}/api/import/orgs/{org_id}/properties/{property_id}/inspections', data=template_json, headers={'Content-Type': 'application/json'}).raise_for_status()
-    except Exception as e:
-        logging.error(e)
-        continue
-    try:
-        db.mark_as_imported(property_id)
-        logging.info(f"Imported {data['address']} successfully")
-    except Exception as e:
-        logging.error(e)
+    for root, dirs, files in os.walk(path_to_json):
+        for filename in files:
+            if filename.endswith(".json"):
+                print(filename)
+                path = os.path.join(root, filename)
+
+                logging.info(f"*-*-*-*-*-*-*-*-*-*-*-* Started {address} import *-*-*-*-*-*-*-*-*-*-*-*")
+                try:
+                    with open(path, 'r', encoding='utf-8') as file:
+                        template_json = file.read()
+                except Exception as e:
+                    logging.error(e)
+                    continue              
+
+                try:
+                    session.post(f'{base_url}/api/import/orgs/{org_id}/properties/{property_id}/inspections', data=template_json, headers={'Content-Type': 'application/json'}).raise_for_status()
+                    logging.info(f"Imported {address} successfully")
+                except Exception as e:
+                    logging.error(e)
+                    continue
+  
 
